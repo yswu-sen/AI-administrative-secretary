@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODA AI 行政秘書</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 機密提醒浮水印 -->
+    <div class="watermark">內部使用 請勿外流</div>
+
+    <!-- 側邊導覽列 -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="#005F73"/>
+                    <path d="M12 28V12h4l4 10 4-10h4v16h-3V17l-4 11h-2l-4-11v11h-3z" fill="white"/>
+                </svg>
+                <span class="logo-text">AI 行政秘書</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="收合選單">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+                <span class="nav-text">工作台</span>
+            </a>
+            <a href="#" class="nav-item" data-page="meeting">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 8v4l3 3"/>
+                    <circle cx="12" cy="12" r="9"/>
+                </svg>
+                <span class="nav-text">會議紀錄</span>
+            </a>
+            <a href="#" class="nav-item" data-page="documents">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span class="nav-text">公文擬辦</span>
+            </a>
+            <a href="#" class="nav-item" data-page="tracking">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                <span class="nav-text">決策追蹤</span>
+            </a>
+            <a href="#" class="nav-item" data-page="history">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3v5h5"/>
+                    <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/>
+                    <path d="M12 7v5l4 2"/>
+                </svg>
+                <span class="nav-text">歷史紀錄</span>
+            </a>
+            <a href="#" class="nav-item" data-page="settings" id="settingsBtn">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span class="nav-text">系統設定</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">署</div>
+                <div class="user-details">
+                    <span class="user-name">數位產業署</span>
+                    <span class="user-role">行政人員</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 手機版頂部導覽 -->
+    <header class="mobile-header" id="mobileHeader">
+        <button class="menu-btn" id="menuBtn" aria-label="開啟選單">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+        <h1 class="mobile-title">AI 行政秘書</h1>
+        <button class="notification-btn" aria-label="通知">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="notification-badge">3</span>
+        </button>
+    </header>
+
+    <!-- 主內容區 -->
+    <main class="main-content" id="mainContent">
+        <!-- 頁面標題區 -->
+        <div class="page-header">
+            <div class="page-title-section">
+                <h1 class="page-title">工作台</h1>
+                <p class="page-subtitle">歡迎回來，今天有 3 項待處理事項</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="newMeetingBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    <span>新增會議</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 快速統計卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card clickable" data-type="pending" id="statPending">
+                <div class="stat-icon pending">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">待處理會議</span>
+                </div>
+                <svg class="stat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"/>
+                </svg>
+            </div>
+            <div class="stat-card clickable" data-type="monthly" id="statMonthly">
+                <div class="stat-icon processing">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">12</span>
+                    <span class="stat-label">本月公文</span>
+                </div>
+                <svg class="stat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"/>
+                </svg>
+            </div>
+            <div class="stat-card clickable" data-type="completed" id="statCompleted">
+                <div class="stat-icon completed">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22,4 12,14.01 9,11.01"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">28</span>
+                    <span class="stat-label">已完成決議</span>
+                </div>
+                <svg class="stat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"/>
+                </svg>
+            </div>
+            <div class="stat-card clickable" data-type="overdue" id="statOverdue">
+                <div class="stat-icon alert">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">2</span>
+                    <span class="stat-label">逾期待辦</span>
+                </div>
+                <svg class="stat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 統計詳情面板 -->
+        <div class="stat-detail-panel" id="statDetailPanel" style="display: none;">
+            <div class="detail-header">
+                <h3 class="detail-title" id="detailTitle">待處理會議</h3>
+                <button class="detail-close" id="detailClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="detail-list" id="detailList">
+                <!-- 動態填入 -->
+            </div>
+        </div>
+
+        <!-- 主要工作區：檔案上傳與AI生成 -->
+        <div class="work-area">
+            <!-- 左側：資料上傳區 -->
+            <section class="upload-section">
+                <div class="section-header">
+                    <h2 class="section-title">資料匯入</h2>
+                    <span class="section-badge">步驟 1</span>
+                </div>
+
+                <div class="upload-zones">
+                    <!-- Whisper 轉錄稿上傳 -->
+                    <div class="upload-zone" id="whisperZone" data-type="whisper">
+                        <div class="upload-icon whisper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                        </div>
+                        <div class="upload-content">
+                            <h3>資料 A：Whisper 轉錄稿</h3>
+                            <p>含時間軸的語音轉錄檔案</p>
+                            <span class="upload-formats">.txt, .json, .srt</span>
+                        </div>
+                        <div class="upload-status" id="whisperStatus"></div>
+                        <input type="file" id="whisperInput" accept=".txt,.json,.srt" hidden>
+                    </div>
+
+                    <!-- iPhone 轉錄稿上傳 -->
+                    <div class="upload-zone" id="iphoneZone" data-type="iphone">
+                        <div class="upload-icon iphone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                <line x1="12" y1="18" x2="12.01" y2="18"/>
+                            </svg>
+                        </div>
+                        <div class="upload-content">
+                            <h3>資料 B：iPhone 轉錄稿</h3>
+                            <p>校正參考用，口語辨識較佳</p>
+                            <span class="upload-formats">.txt, .docx</span>
+                        </div>
+                        <div class="upload-status" id="iphoneStatus"></div>
+                        <input type="file" id="iphoneInput" accept=".txt,.docx" hidden>
+                    </div>
+
+                    <!-- 會議背景資料上傳 -->
+                    <div class="upload-zone" id="contextZone" data-type="context">
+                        <div class="upload-icon context">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                        </div>
+                        <div class="upload-content">
+                            <h3>資料 C：會議背景資料</h3>
+                            <p>議程、簡報、相關文件</p>
+                            <span class="upload-formats">.pdf, .docx, .pptx</span>
+                        </div>
+                        <div class="upload-status" id="contextStatus"></div>
+                        <input type="file" id="contextInput" accept=".pdf,.docx,.pptx" multiple hidden>
+                    </div>
+                </div>
+
+                <!-- 會議資訊表單 -->
+                <div class="meeting-info-form">
+                    <h3 class="form-title">會議基本資訊</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="meetingDate">會議日期</label>
+                            <input type="date" id="meetingDate" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="meetingTime">會議時間</label>
+                            <input type="time" id="meetingTime" class="form-input">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="meetingTitle">會議主題</label>
+                            <input type="text" id="meetingTitle" class="form-input" placeholder="例：113年度數位產業推動策略會議">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="meetingLocation">會議地點</label>
+                            <input type="text" id="meetingLocation" class="form-input" placeholder="例：本署 8 樓會議室">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 右側：AI生成控制與輸出 -->
+            <section class="generation-section">
+                <div class="section-header">
+                    <h2 class="section-title">AI 生成控制台</h2>
+                    <span class="section-badge">步驟 2</span>
+                </div>
+
+                <!-- 產出選項 -->
+                <div class="output-options">
+                    <h3 class="options-title">選擇產出文件類型</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="optSummary" checked>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">會議摘要</span>
+                            <span class="checkbox-desc">關鍵決策與重大進度</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="optVerbatim" checked>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">精修逐字稿</span>
+                            <span class="checkbox-desc">含時間軸與發言者標記</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="optMemo" checked>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">正式備忘錄</span>
+                            <span class="checkbox-desc">案由、說明、決定、待辦</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="optMessage">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">線上請示文字</span>
+                            <span class="checkbox-desc">LINE/Teams 回報用</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="optAgenda">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">下次會議議程草案</span>
+                            <span class="checkbox-desc">根據待辦事項預擬</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 生成按鈕 -->
+                <button class="btn btn-generate" id="generateBtn">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                    <span>開始 AI 生成</span>
+                </button>
+
+                <!-- 生成進度 -->
+                <div class="generation-progress" id="generationProgress" style="display: none;">
+                    <div class="progress-header">
+                        <span class="progress-text">正在處理中...</span>
+                        <span class="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step" data-step="1">
+                            <div class="step-indicator"></div>
+                            <span>資料解析</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="step-indicator"></div>
+                            <span>交叉比對</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="step-indicator"></div>
+                            <span>文件生成</span>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="step-indicator"></div>
+                            <span>格式校正</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 輸出結果預覽 -->
+                <div class="output-preview" id="outputPreview" style="display: none;">
+                    <div class="preview-tabs">
+                        <button class="preview-tab active" data-tab="summary">會議摘要</button>
+                        <button class="preview-tab" data-tab="verbatim">逐字稿</button>
+                        <button class="preview-tab" data-tab="memo">備忘錄</button>
+                        <button class="preview-tab" data-tab="message">請示文字</button>
+                        <button class="preview-tab" data-tab="agenda">議程草案</button>
+                    </div>
+                    <div class="preview-content" id="previewContent">
+                        <div class="preview-pane active" data-pane="summary">
+                            <div class="preview-toolbar">
+                                <button class="toolbar-btn" title="複製">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                                <button class="toolbar-btn" title="下載 Word">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7,10 12,15 17,10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </button>
+                                <button class="toolbar-btn" title="編輯">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="preview-text" id="summaryText">
+                                <!-- AI 生成內容將顯示於此 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 決策追蹤看板 -->
+        <section class="tracking-board" id="trackingBoard">
+            <div class="section-header">
+                <h2 class="section-title">決策追蹤</h2>
+                <div class="board-view-toggle">
+                    <button class="view-btn active" data-view="kanban">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="5" height="18" rx="1"/>
+                            <rect x="10" y="3" width="5" height="12" rx="1"/>
+                            <rect x="17" y="3" width="5" height="15" rx="1"/>
+                        </svg>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6" x2="21" y2="6"/>
+                            <line x1="8" y1="12" x2="21" y2="12"/>
+                            <line x1="8" y1="18" x2="21" y2="18"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="kanban-board">
+                <div class="kanban-column" data-status="pending">
+                    <div class="column-header">
+                        <span class="column-title">擬辦中</span>
+                        <span class="column-count">3</span>
+                    </div>
+                    <div class="column-cards">
+                        <div class="task-card">
+                            <div class="card-header">
+                                <span class="card-tag urgent">急件</span>
+                                <span class="card-date">12/28</span>
+                            </div>
+                            <h4 class="card-title">產業數據平台規格確認</h4>
+                            <p class="card-desc">確認第二階段開發規格書</p>
+                            <div class="card-footer">
+                                <span class="card-assignee">王專員</span>
+                            </div>
+                        </div>
+                        <div class="task-card">
+                            <div class="card-header">
+                                <span class="card-tag normal">一般</span>
+                                <span class="card-date">01/05</span>
+                            </div>
+                            <h4 class="card-title">跨部會協調會議</h4>
+                            <p class="card-desc">與經濟部確認合作事項</p>
+                            <div class="card-footer">
+                                <span class="card-assignee">陳科長</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kanban-column" data-status="review">
+                    <div class="column-header">
+                        <span class="column-title">待核定</span>
+                        <span class="column-count">2</span>
+                    </div>
+                    <div class="column-cards">
+                        <div class="task-card">
+                            <div class="card-header">
+                                <span class="card-tag normal">一般</span>
+                                <span class="card-date">12/30</span>
+                            </div>
+                            <h4 class="card-title">114年度預算編列</h4>
+                            <p class="card-desc">送署長核示</p>
+                            <div class="card-footer">
+                                <span class="card-assignee">林組長</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kanban-column" data-status="completed">
+                    <div class="column-header">
+                        <span class="column-title">已決行</span>
+                        <span class="column-count">5</span>
+                    </div>
+                    <div class="column-cards">
+                        <div class="task-card completed">
+                            <div class="card-header">
+                                <span class="card-tag completed">完成</span>
+                                <span class="card-date">12/25</span>
+                            </div>
+                            <h4 class="card-title">AI應用示範案審查</h4>
+                            <p class="card-desc">已完成第一輪審查</p>
+                            <div class="card-footer">
+                                <span class="card-assignee">張專委</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 手機版底部導覽 -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="#" class="mobile-nav-item active" data-page="dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+            <span>工作台</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-page="meeting">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 8v4l3 3"/>
+                <circle cx="12" cy="12" r="9"/>
+            </svg>
+            <span>會議</span>
+        </a>
+        <a href="#" class="mobile-nav-item fab" id="mobileFab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+        </a>
+        <a href="#" class="mobile-nav-item" data-page="documents">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            <span>公文</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-page="tracking">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+            <span>追蹤</span>
+        </a>
+    </nav>
+
+    <!-- 新增會議 Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="newMeetingModal">
+            <div class="modal-header">
+                <h2>新增會議專案</h2>
+                <button class="modal-close" id="modalClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- AI 智慧辨識上傳區 -->
+                <div class="ai-upload-section">
+                    <div class="ai-upload-zone" id="aiUploadZone">
+                        <svg class="ai-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17,8 12,3 7,8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <div class="ai-upload-text">
+                            <strong>AI 智慧辨識</strong>
+                            <span>拖曳或點擊上傳截圖/PDF，自動填入資訊</span>
+                        </div>
+                        <input type="file" id="aiFileInput" accept="image/*,.pdf" hidden>
+                    </div>
+                    <div class="ai-upload-status" id="aiUploadStatus"></div>
+                </div>
+
+                <div class="form-divider">
+                    <span>或手動填寫</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalMeetingTitle">會議主題 *</label>
+                    <input type="text" id="modalMeetingTitle" class="form-input" placeholder="請輸入會議主題">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalMeetingDate">會議日期 *</label>
+                        <input type="date" id="modalMeetingDate" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalMeetingTime">會議時間</label>
+                        <input type="time" id="modalMeetingTime" class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modalMeetingType">工作分類</label>
+                    <select id="modalMeetingType" class="form-input">
+                        <option value="">請選擇分類</option>
+                        <option value="計畫類">計畫類</option>
+                        <option value="預算類">預算類</option>
+                        <option value="租稅優惠">租稅優惠</option>
+                        <option value="國際人才">國際人才</option>
+                        <option value="AI產業人才認定指引">AI產業人才認定指引</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalDueDate">截止日期</label>
+                    <input type="date" id="modalDueDate" class="form-input">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modalCancel">取消</button>
+                <button class="btn btn-primary" id="modalConfirm">建立專案</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 設定 Modal -->
+    <div class="modal-overlay" id="settingsModalOverlay">
+        <div class="modal" id="settingsModal">
+            <div class="modal-header">
+                <h2>系統設定</h2>
+                <button class="modal-close" id="settingsModalClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3 class="settings-title">AI 服務設定</h3>
+                    <p class="settings-desc">設定 Gemini API Key 以啟用 AI 智慧辨識功能</p>
+                    
+                    <div class="form-group">
+                        <label for="geminiApiKey">Gemini API Key</label>
+                        <div class="input-with-btn">
+                            <input type="password" id="geminiApiKey" class="form-input" placeholder="請輸入您的 API Key">
+                            <button type="button" class="btn-toggle-password" id="toggleApiKey">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <span class="form-hint">
+                            <a href="https://aistudio.google.com/app/apikey" target="_blank">點此申請 API Key</a>（免費）
+                        </span>
+                    </div>
+                    
+                    <div class="api-status" id="apiStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">尚未設定</span>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3 class="settings-title">資料連線狀態</h3>
+                    <div class="connection-status">
+                        <div class="status-item">
+                            <span class="status-label">Google Sheets</span>
+                            <span class="status-badge connected" id="sheetsStatus">已連線</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Apps Script API</span>
+                            <span class="status-badge connected" id="scriptStatus">已連線</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="settingsCancel">取消</button>
+                <button class="btn btn-primary" id="settingsSave">儲存設定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
