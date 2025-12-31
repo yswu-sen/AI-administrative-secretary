@@ -22,7 +22,7 @@ const API_CONFIG = {
 // ========================================
 const SHEETS_CONFIG = {
     spreadsheetId: '1GzW2xIWs9wUIS0mbB37LmXiTrfrJ6rtkGrOPmI-r2cU',
-    appsScriptUrl: 'https://script.google.com/macros/s/AKfycbz4OnG65YDYIPQBJyPk3S82T9cJhnsxKaQynmIT0Cq2H816rmfVI_wQ2d3F_rzA7pM8qA/exec',
+    appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzoH9lRgmYDIhMusSLosOTQz35AGq8C1cXlLiJP_6Clf3DTqq1Zu5zO-qq3peqSxYieEg/exec',
     sheets: {
         meetings: '01_會議工作清單',
         categories: '02_分類設定',
